@@ -1,4 +1,4 @@
-Shinogi Mood Board App
+Music Ed Hack
 =========================
 
 
@@ -10,7 +10,3 @@ Start the server
 ----------------
     coffee server
 
-
-Use the API
------------
-* see tests

@@ -70,7 +70,7 @@ app.get('/test',function(req,res,next){
   })
 });
 
-app.get('/songs/:query',function(req,res,next){
+app.get('/guitarparty/songs/:query',function(req,res,next){
   request('http://api.guitarparty.com/v2/songs/\?query\=' + req.params.query,
   {
     headers:
@@ -81,7 +81,8 @@ app.get('/songs/:query',function(req,res,next){
     res.json(jsonBody)
   })
 });
-app.get('/artists/:query',function(req,res,next){
+
+app.get('/guitarparty/artists/:query',function(req,res,next){
   request('http://api.guitarparty.com/v2/artists/\?query\=' + req.params.query,
   {
     headers:
@@ -92,7 +93,49 @@ app.get('/artists/:query',function(req,res,next){
     res.json(jsonBody)
   })
 });
+
+app.get('/spotify/album/:query',function(req,res,next){
+  request('http://ws.spotify.com/search/1/album.json?q=' + req.params.query,
+  {
+    function (error, response, body) {
+    jsonBody = JSON.parse(body);
+    res.json(jsonBody)
+  })
+});
+
+
+app.get('/spotify/artist/:query',function(req,res,next){
+  request('http://ws.spotify.com/search/1/artist.json?q=' + req.params.query,
+  {
+    function (error, response, body) {
+    jsonBody = JSON.parse(body);
+    res.json(jsonBody)
+  })
+});
+
+
+app.get('/echonest/images/:query',function(req,res,next){
+  request('http://developer.echonest.com/api/v4/artist/images?api_key=HQKVLGMLDIVUJ9575&name=' + req.params.query + '&format=json&results=1&start=0&license=unknown',
+  {
+    function (error, response, body) {
+    jsonBody = JSON.parse(body);
+    res.json(jsonBody)
+  })
+});
+
+
+app.get('/echonest/video/:query',function(req,res,next){
+  request('http://developer.echonest.com/api/v4/artist/video?api_key=HQKVLGMLDIVUJ9575&name=' + req.params.query + '&format=json&results=1&start=0',
+  {
+    function (error, response, body) {
+    jsonBody = JSON.parse(body);
+    res.json(jsonBody)
+  })
+});
+
+
 `
+
 
 
 

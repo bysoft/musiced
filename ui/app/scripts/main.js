@@ -14,18 +14,6 @@ require.config({
 require(['app', 'jquery', 'bootstrap', 'hello'], function (app, $) {
     'use strict';
     // use app here
-    console.log(app);
-    console.log('Running jQuery %s', $().jquery);
-    $('.btn-song').on('click', function(){
-      console.log ('foo')
-      window.global = {}
-      global.req = $.ajax({
-        url:'./scripts/teen.json'
-      })
-      global.req.done = function(e){
-        console.log(e)
-      }
-    })
 });
 
 /*

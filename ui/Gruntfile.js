@@ -20,6 +20,7 @@ module.exports = function (grunt) {
     var yeomanConfig = {
         app: 'app',
         dist: 'dist'
+        //dist: '../server/srv/public'
     };
 
     grunt.initConfig({

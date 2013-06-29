@@ -71,8 +71,23 @@ app.get('/test',function(req,res,next){
 });
 
 app.get('/songs/:query',function(req,res,next){
-  request('http://api.guitarparty.com/v2/songs/\?query\=' + req.params.query, {headers:{'Guitarparty-Api-Key': "32ba2951d572564b735ef94943f6219eba696cd5"}}, function (error, response, body) {
-    console.log(body)
+  request('http://api.guitarparty.com/v2/songs/\?query\=' + req.params.query,
+  {
+    headers:
+      {'Guitarparty-Api-Key': "32ba2951d572564b735ef94943f6219eba696cd5"}
+  },
+    function (error, response, body) {
+    jsonBody = JSON.parse(body);
+    res.json(jsonBody)
+  })
+});
+app.get('/artists/:query',function(req,res,next){
+  request('http://api.guitarparty.com/v2/artists/\?query\=' + req.params.query,
+  {
+    headers:
+      {'Guitarparty-Api-Key': "32ba2951d572564b735ef94943f6219eba696cd5"}
+  },
+    function (error, response, body) {
     jsonBody = JSON.parse(body);
     res.json(jsonBody)
   })

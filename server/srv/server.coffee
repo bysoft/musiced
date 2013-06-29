@@ -8,8 +8,9 @@ express_mongoose_crud = require('../src/index')
 path = require('path')
 
 models = require('./models')
+request = require('request')
 
-db = mongoose.connect("mongodb://localhost/mood")
+db = mongoose.connect("mongodb://localhost/songs")
 
 app = module.exports = express.createServer()
 app.configure ->
@@ -60,7 +61,23 @@ get_or_create_model = (model, search_field, data, cb) ->
 # }, (mood) ->
 #   console.log 'mood created'
 
+`
+app.get('/test',function(req,res,next){
+  request('http://api.guitarparty.com/v2/songs/\?query\=black+eyed+peas', {headers:{'Guitarparty-Api-Key': "32ba2951d572564b735ef94943f6219eba696cd5"}}, function (error, response, body) {
+    console.log(body)
+    jsonBody = JSON.parse(body);
+    res.json(jsonBody)
+  })
+});
 
+app.get('/songs/:query',function(req,res,next){
+  request('http://api.guitarparty.com/v2/songs/\?query\=' + req.params.query, {headers:{'Guitarparty-Api-Key': "32ba2951d572564b735ef94943f6219eba696cd5"}}, function (error, response, body) {
+    console.log(body)
+    jsonBody = JSON.parse(body);
+    res.json(jsonBody)
+  })
+});
+`
 
 
 
